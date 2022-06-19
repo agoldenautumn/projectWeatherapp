@@ -5,23 +5,10 @@ body {
     rgb(86, 255, 248) 78.4%
   );
 }
-li {
-  list-style: none;
-}
-.coders {
-  color: blue;
-}
-.courses {
-  color: red;
-}
-.stories {
-  color: green;
-}
-ul {
-  list-style: none;
-  padding: 0;
+h2 {
   text-align: center;
 }
+
 h1 {
   color: #885df1;
   text-decoration: underline;
@@ -30,22 +17,14 @@ h1 {
   margin: 60px;
   background: #95b994;
 }
-h2 {
-  color: #272044;
-  text-align: center;
-}
-h3 {
-  color: #885df1;
-  text-align: center;
-}
+
 li {
   text-align: center;
   margin: 1 15px;
   display: inline;
+  list-style-type: none;
 }
-a {
-  text-decoration: none;
-}
+
 img {
   width: 200px;
   display: block;
