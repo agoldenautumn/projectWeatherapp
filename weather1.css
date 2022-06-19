@@ -1,0 +1,84 @@
+body {
+  background-color: linear-gradient(
+    109.5deg,
+    rgb(13, 11, 136) 9.4%,
+    rgb(86, 255, 248) 78.4%
+  );
+}
+li {
+  list-style: none;
+}
+.coders {
+  color: blue;
+}
+.courses {
+  color: red;
+}
+.stories {
+  color: green;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+h1 {
+  color: #885df1;
+  text-decoration: underline;
+  text-align: center;
+  padding: 20px 30px 20px 30px;
+  margin: 60px;
+  background: #95b994;
+}
+h2 {
+  color: #272044;
+  text-align: center;
+}
+h3 {
+  color: #885df1;
+  text-align: center;
+}
+li {
+  text-align: center;
+  margin: 1 15px;
+  display: inline;
+}
+a {
+  text-decoration: none;
+}
+img {
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgb(128, 187, 214);
+  border: 6px solid green;
+  border-radius: 6px;
+}
+button {
+  background: transparent;
+  display: block;
+  color: #885df1;
+  font-size: 18px;
+  margin: 0 auto 30px auto;
+  padding: 15px 30px;
+  border: 1px solid #885df1;
+  border-radius: 30px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: all 150ms ease-in-out;
+}
+button:hover {
+  background: #885df1;
+  color: white;
+}
+.contact-details {
+  text-align: center;
+  font-size: 12px;
+}
+.contact-platforms {
+  color: #885df1;
+}
+.contacts-usage {
+  color: #885df1;
+}
