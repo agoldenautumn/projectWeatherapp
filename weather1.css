@@ -5,10 +5,6 @@ body {
     rgb(86, 255, 248) 78.4%
   );
 }
-h2 {
-  text-align: center;
-}
-
 h1 {
   color: #885df1;
   text-decoration: underline;
@@ -17,12 +13,18 @@ h1 {
   margin: 60px;
   background: #95b994;
 }
+h2 {
+  text-align: center;
+  list-style-type: none;
 
-li {
+}
+
+ul {
   text-align: center;
   margin: 1 15px;
   display: inline;
   list-style-type: none;
+  color: #885df1;
 }
 
 img {
@@ -49,7 +51,7 @@ button {
 }
 button:hover {
   background: #885df1;
-  color: white;
+  color: rgb(128, 58, 124);
 }
 .contact-details {
   text-align: center;
@@ -60,4 +62,46 @@ button:hover {
 }
 .contacts-usage {
   color: #885df1;
+}
+.weather-app-wrapper {
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.weather-app {
+  padding: 20px;
+  border: 1px solid #5074a3;
+  border-radius: 5px;
+}
+
+.overview {
+  margin-bottom: 20px;
+}
+
+.weather-temperature img {
+  margin-right: 5px;
+  height: 64px;
+  width: 64px;
+}
+
+.weather-temperature strong {
+  color: pink;
+  font-size: 58px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.weather-temperature .units {
+  position: relative;
+  font-size: 20px;
+  top: -44px;
+}
+
+.weather-temperature .active {
+  color:rgb(230, 24, 178);
+  cursor: default;
+}
+
+.weather-temperature .active:hover {
+  text-decoration: none;
 }

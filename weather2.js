@@ -1,4 +1,5 @@
-function formatDate(date) {
+function formatDate(timeread) {
+  let date = new Date(timeread);
   let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
@@ -8,7 +9,6 @@ function formatDate(date) {
     minutes = `0${minutes}`;
   }
 
-  let dayIndex = date.getDay();
   let days = [
     "Sunday",
     "Monday",
@@ -18,69 +18,73 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
-  let day = days[dayIndex];
-
+  let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
 
-function search(event) {
-  event.preventDefault();
+function displayTemperature(response) {
+  let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
-  let cityInput = document.querySelector("#city-input");
-  cityElement.innerHTML = cityInput.value;
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+
+  celsiusTemperature = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-function convertToFahrenheit(event) {
+function search(city) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 66;
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
 }
 
-function convertToCelsius(event) {
+function displayCelsiusTemperature(event) {
   event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 19;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-let dateElement = document.querySelector("#date");
-let currentTime = new Date();
-dateElement.innerHTML = formatDate(currentTime);
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+let celsiusTemperature = null;
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", convertToCelsius);
-let weather = {
-  paris: {
-    temp: 19.7,
-    humidity: 80,
-  },
-  tokyo: {
-    temp: 17.3,
-    humidity: 50,
-  },
-  lisbon: {
-    temp: 30.2,
-    humidity: 20,
-  },
-  "san francisco": {
-    temp: 20.9,
-    humidity: 100,
-  },
-  moscow: {
-    temp: -5,
-    humidity: 20,
-  },
-};
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-let city = prompt("Enter a city?");
-city = city.toLowerCase();
-if (weather[city] !== undefined) {
-  let temperature = weather[city].temp;
-  let humidity = weather[city].humidity;
-  let celsiusTemperature = Math.round(temperature);
-  let fahrenheitTemperature = Math.round((temperature * 9) / 5 + 32);
-}
+search("Bentonville");
